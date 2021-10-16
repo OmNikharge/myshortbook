@@ -1,9 +1,9 @@
-// if(process.env.NODE_ENV !== 'production'){
-//     require('dotenv').parse()
-// }
+if(process.env.NODE_ENV !== 'production'){
+    require('dotenv').parse()
+}
 
 
-require('dotenv').config();
+// require('dotenv').config();
 
 const express = require('express');  //This line of code returns whatever is exported by the express.js module
 const indexRouter= require('./routes/index')
