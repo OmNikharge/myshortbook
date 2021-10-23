@@ -7,7 +7,7 @@ const Author= require('../models/author')
 router.get('/', async (req,res)=>{
      // Implementing the search Options Feature
      let searchOptions ={}
-     if(req.query.lame != null && req.query.name !== ''){
+     if(req.query.lame != null && req.query.lame !== ''){
          searchOptions.name = new RegExp(req.query.lame, 'i')
      }
     try{
