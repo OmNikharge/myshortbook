@@ -34,9 +34,9 @@ router.post('/', async (req,res)=>{
     )
 
     try{
-        const newAuthor = await author.save() //We are saving a new document into the collection(model) Author into the mongodb databae
+         await author.save() //We are saving a new document into the collection(model) Author into the mongodb databae
        res.redirect(`authors`)
-       await console.log("This is the new doucment in the collection 'Author' ",newAuthor);
+      
     } catch{
        res.render('authors/new',{
                 author: author,
