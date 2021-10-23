@@ -1,12 +1,18 @@
 if(process.env.NODE_ENV !== 'production'){
-    require('dotenv').parse()
+    const dotenv=require('dotenv')
+    dotenv.config();
 }
 
 
 // require('dotenv').config();
 
 const express = require('express');  //This line of code returns whatever is exported by the express.js module
+
+const bodyParser= require('body-parser');
+//Getting different Routes
 const indexRouter= require('./routes/index')
+const authorsRouter= require('./routes/authors')
+ 
 
 
 
@@ -23,11 +29,12 @@ app.set('views', __dirname + '/views') //Assigns setting name to value. You may 
 app.set('layout', 'layouts/layout')
 app.use(expressLayouts) //app.set() function is used to mount a specific middleware function at a specified url.
 app.use(express.static('public'))
- 
+app.use(bodyParser.urlencoded({limit:'10mb',extended:false}))
 
 
 app.use('/', indexRouter);
-// use port 3000 unless there exists a preconfigured port
+app.use('/authors', authorsRouter);
+
 
 
 //Connecting to the database
