@@ -39,7 +39,7 @@ app.use('/authors', authorsRouter);
 
 //Connecting to the database
 const mongoose = require('mongoose')
-mongoose.connect(process.env.DATABASE_URL)
+mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTopology: true}).then((result) =>console.log('Connected to db')).catch((err) => console.log(err));
 const db= mongoose.connection
 // on method signifies that the callback will be fired every time the event is occured
 
