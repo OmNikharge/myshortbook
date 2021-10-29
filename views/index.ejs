@@ -1,8 +1,7 @@
-<nav>
-    <ul>
-        <li>Home</li>
-        <li>About</li>
-        <li>Services</li>
-        <li>About</li>
-    </ul>
-</nav>
+<h2>Recently added</h2>
+<div>
+    <% books.forEach(book => { %>
+        <img height="150" width="100" src="<%= book.coverImagePath %>">
+        <% }) %>  
+</div>
+

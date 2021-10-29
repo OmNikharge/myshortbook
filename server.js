@@ -12,6 +12,7 @@ const bodyParser= require('body-parser');
 //Getting different Routes
 const indexRouter= require('./routes/index')
 const authorsRouter= require('./routes/authors')
+const booksRouter= require('./routes/books')
  
 
 
@@ -23,7 +24,7 @@ const app= express();
  //Here we are invoking a function express(); and storing it a variable app
 const expressLayouts= require('express-ejs-layouts')
 
-app.set('view engine', 'ejs') //A template engine is used to add dynamic content in your html
+app.set('view engine', 'ejs') //A view engine is used for rendering webpages. html can also be used as a view engine
 
 app.set('views', __dirname + '/views') //Assigns setting name to value. You may store any value that you want, but certain names can be used to configure the behavior of the server. These special names are listed in the app settings table. 
 app.set('layout', 'layouts/layout')
@@ -34,6 +35,7 @@ app.use(bodyParser.urlencoded({limit:'10mb',extended:false}))
 
 app.use('/', indexRouter);
 app.use('/authors', authorsRouter);
+app.use('/books', booksRouter);
 
 
 
