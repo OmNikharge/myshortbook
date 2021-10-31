@@ -3,36 +3,34 @@ const router = express.Router()
 // Getting Book Schema
 const Author = require('../models/author')
 const Book = require('../models/book')
-const multer = require('multer')
-const fs = require('fs')
-const path = require('path')
+// const multer = require('multer')
 const { query } = require('express')
 
 
 
 // diskstorage is used to specify how the files will be stored.
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'public/uploads');
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + file.originalname);
-    }
-})
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, 'public/uploads');
+//     },
+//     filename: function (req, file, cb) {
+//         cb(null, Date.now() + file.originalname);
+//     }
+// })
 
-  const fileFilter = function (req, file, cb) {
-    //reject a file
-    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-        cb(null, true)
-    } else {
-        cb(null, false)
-    }}
-const upload = multer({
-    storage: storage, limits: {
-        fileSize: 1024 * 1024 * 5
-    },
-    fileFilter: fileFilter
-});
+//   const fileFilter = function (req, file, cb) {
+//     //reject a file
+//     if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+//         cb(null, true)
+//     } else {
+//         cb(null, false)
+//     }}
+// const upload = multer({
+//     storage: storage, limits: {
+//         fileSize: 1024 * 1024 * 5
+//     },
+//     fileFilter: fileFilter
+// });
 
 
 
@@ -68,7 +66,7 @@ router.get('/new', async (req, res) => {
 })
 
 // Create Book Route
-router.post('/', upload.single('cover'), async (req, res) => {
+router.post('/',  async (req, res) => {
 
     const book = new Book({
         title: req.body.title,
@@ -76,24 +74,18 @@ router.post('/', upload.single('cover'), async (req, res) => {
         publishDate: new Date(req.body.publishDate),
         // Here we are using the Date() constructor function because the req.body.publishDate wil return a string which we want to be converted into date format.
         pageCount: req.body.pageCount,
-        coverImageName: req.file.filename,
         description: req.body.description
     })
-    console.log(req.body.author)
+      saveCover(book, req.body.cover);
     try {
-        const newBook = await book.save()                                                           
+        const newBook = await book.save()                                                  
         res.redirect(`books`)
     } catch {
-       removeBookCover(book.coverImageName);
         renderNewPage(res, new Book(), true)
     }
 })
 
-function removeBookCover(theFileName){
-    fs.unlink(path.join('uploads', theFileName), err => {
-        if(err) console.log(err);
-    })
-}
+
 
 async function renderNewPage(res, book, hasError = false) {
     try { 
@@ -109,6 +101,14 @@ async function renderNewPage(res, book, hasError = false) {
         res.redirect('/books')
     }
 }
-
+const imageMimeTypes = ['image/jpeg', 'image/png']
+function saveCover(book, coverEncoded){
+    if(coverEncoded == null) return
+    const cover = JSON.parse(coverEncoded) //Here we are converting the string which is internally a json into a json object
+    if(cover != null && imageMimeTypes.includes(cover.type)){
+        book.coverImage = new Buffer.from(cover.data, 'base64')
+        book.coverImageType = cover.type
+    }
+}
 module.exports = router;
 
