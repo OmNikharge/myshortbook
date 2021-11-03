@@ -7,6 +7,7 @@ if(process.env.NODE_ENV !== 'production'){
 // require('dotenv').config();
 
 const express = require('express');  //This line of code returns whatever is exported by the express.js module
+const methodOverride = require('method-override');
 
 const bodyParser= require('body-parser');
 //Getting different Routes
@@ -21,6 +22,7 @@ const booksRouter= require('./routes/books')
 
  
 const app= express();
+app.use(methodOverride('_method'))
  //Here we are invoking a function express(); and storing it a variable app
 const expressLayouts= require('express-ejs-layouts')
 

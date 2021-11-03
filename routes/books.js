@@ -37,14 +37,17 @@ const { query } = require('express')
 
 // All Books Routes
 router.get('/', async (req, res) => {
-    let query = Book.find()
-    if(req.query.title != null && req.query.title != ''){
+    let query = Book.find() 
+    if(req.query.title != null && req.query.title != ''){     
+        // regex() Selects documents where values match a specified regular expression.
          query= query.regex('title', new RegExp(req.query.title,'i'))
     }
     if(req.query.publishedBefore != null && req.query.publishedBefore != ''){
+        //Matches values that are less than or equal to a specified value.
          query= query.lte('publishDate', new RegExp(req.query.publishedBefore))
     }
     if(req.query.publishedAfter != null && req.query.publishedAfter != ''){
+        // Matches values that are greater than or equal to a specified value.
          query= query.gte('publishDate', new RegExp(req.query.publishedAfter))
     }
     try{
@@ -85,7 +88,7 @@ router.post('/',  async (req, res) => {
     }
 })
 
-
+ 
 
 async function renderNewPage(res, book, hasError = false) {
     try { 
