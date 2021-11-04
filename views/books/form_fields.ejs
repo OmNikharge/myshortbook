@@ -15,10 +15,10 @@
                     <% }) %>
 </select>
 </div> <br>
-<label>Publish Date:</label>
-<input type="date" name="publishDate"
- value="<%= book.publishDate == null ? '' : 
-      book.publishDate.toISOString().split('T')[0] %>">
+<label>Date:</label>
+<input type="date" name="read_date"
+ value="<%= book.read_date == null ? '' : 
+      book.read_date.toISOString().split('T')[0] %>">
        
 <div><br>
     <label>Page Count:</Title></label>
@@ -32,8 +32,8 @@
       
 <br>
 <div>
-    <label>Description:</Title></label>
-    <textarea name="description"></textarea></div>
+    <label>My notes from the book:</Title></label>
+    <textarea name="mybooknotes"></textarea></div>
 </div>
 
 <!-- Here we are accessing the name field from the author schema model -->

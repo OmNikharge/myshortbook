@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 // Getting Author Schema
 const Author = require('../models/author')
+const Book = require('../models/book')
 
 // All Authors Routes
 router.get('/', async (req, res) => {
@@ -48,8 +49,16 @@ router.post('/', async (req, res) => {
 
 })
 //THIS IS SHOW(View) AUTHORS ROUTE
-router.get('/:id', (req, res) => {
-    res.send("Show Author" + req.params.id)
+router.get('/:id',async (req, res) => {
+    let book
+    let author
+    try{
+         author= await Author.findById(req.params.id)
+         book = await Book.find({author: req.params.id}).limit(6).exec()
+        res.render('authors/show',{book:book, author: author})
+    } catch{
+        res.redirect('/')
+    }
 })
 
 
@@ -87,10 +96,20 @@ router.put('/:id', async (req, res) => {
 // DELETE AUTHORS ROUTE
 router.delete('/:id', async (req, res) => {
     let author
+    let books
     try {
-        author = Author.findById(req.params.id)
-        await author.remove()
+        author =await Author.findById(req.params.id)
+        books = await Book.find({author:req.params.id})
+        if(books.length >0){
+            console.log("Cant be deleted");
+            res.redirect(`/authors/${author.id}`)
+        }else{
+            console.log(author);
+            console.log(books);
+              await author.deleteOne()
         res.redirect(`/authors`)
+
+        }
     } catch {
         if (author == null) {
             res.redirect('/')

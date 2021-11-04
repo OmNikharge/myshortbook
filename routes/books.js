@@ -42,13 +42,13 @@ router.get('/', async (req, res) => {
         // regex() Selects documents where values match a specified regular expression.
          query= query.regex('title', new RegExp(req.query.title,'i'))
     }
-    if(req.query.publishedBefore != null && req.query.publishedBefore != ''){
+    if(req.query.readBefore != null && req.query.readBefore != ''){
         //Matches values that are less than or equal to a specified value.
-         query= query.lte('publishDate', new RegExp(req.query.publishedBefore))
+         query= query.lte('read_date', new RegExp(req.query.readBefore))
     }
-    if(req.query.publishedAfter != null && req.query.publishedAfter != ''){
+    if(req.query.readAfter != null && req.query.readAfter != ''){
         // Matches values that are greater than or equal to a specified value.
-         query= query.gte('publishDate', new RegExp(req.query.publishedAfter))
+         query= query.gte('read_date', new RegExp(req.query.readAfter))
     }
     try{
         const books = await query.exec()
@@ -74,10 +74,10 @@ router.post('/',  async (req, res) => {
     const book = new Book({
         title: req.body.title,
         author: req.body.author,
-        publishDate: new Date(req.body.publishDate),
+        read_date: new Date(req.body.read_date),
         // Here we are using the Date() constructor function because the req.body.publishDate wil return a string which we want to be converted into date format.
         pageCount: req.body.pageCount,
-        description: req.body.description
+        mybooknotes: req.body.mybooknotes
     })
       saveCover(book, req.body.cover);
     try {

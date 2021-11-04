@@ -6,11 +6,11 @@ const bookSchema= new mongoose.Schema({
         type: String,
         required: true
     },
-    description: {
+    mybooknotes: {
         type: String,
         required: false
       },
-      publishDate: {
+      read_date: {
         type: Date,
         required: true
       },
