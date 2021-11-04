@@ -16,11 +16,6 @@ const authorsRouter= require('./routes/authors')
 const booksRouter= require('./routes/books')
  
 
-
-
-
-
- 
 const app= express();
 app.use(methodOverride('_method'))
  //Here we are invoking a function express(); and storing it a variable app
@@ -38,7 +33,6 @@ app.use(bodyParser.urlencoded({limit:'10mb',extended:false}))
 app.use('/', indexRouter);
 app.use('/authors', authorsRouter);
 app.use('/books', booksRouter);
-
 
 
 //Connecting to the database
