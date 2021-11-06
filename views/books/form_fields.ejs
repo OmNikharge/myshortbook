@@ -1,6 +1,6 @@
 <div>
 <label>Title:</Title></label>
-<input type="text" name="title" value="<%= book.name%>"></div>
+<input type="text" name="title" value="<%= book.title%>"></div>
 </div>
 <div> <br>
 <label>Author:</Title></label>
@@ -33,7 +33,7 @@
 <br>
 <div>
     <label>My notes from the book:</Title></label>
-    <textarea name="mybooknotes"></textarea></div>
+    <textarea name="mybooknotes"><%= book.mybooknotes %> </textarea></div>
 </div>
 
 <!-- Here we are accessing the name field from the author schema model -->
