@@ -1,7 +1,84 @@
-<h2>Edit Author</h2>
 
-<form action="/authors/<%= author.id %>?_method=PUT" method="post">
-     <%- include('./form_fields.ejs') %>
-          <button type="submit">Update</button>
-          <a href="/authors/<%= author.id %> ">Cancel</a>
-</form>
+<style>
+     .update-author-outer {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+     }
+
+     .heading {
+          color: #1fb5d3;
+          font-size: 60px;
+          margin-top: 60px;
+          margin-bottom: 20px;
+          margin-left: 10px;
+
+     }
+
+     .update-author-form-button {
+          background-color: #1fb5d3;
+          margin: 15px auto;
+          width: 100px;
+          height: 35px;
+          border: none;
+          outline: none;
+          border-radius: 9999px;
+          font-size: 18px;
+          color: white;
+          /* font-weight: bold; */
+     }
+
+     .cancel {
+          background-color: #1fb5d3;
+          margin: 15px auto;
+          width: 100px;
+          height: 35px;
+          border-radius: 9999px;
+          font-size: 18px;
+          color: rgb(255, 255, 255);
+          line-height: 35px;
+          text-align: center;
+          text-decoration: none;
+     }
+
+     .update-author-form {
+
+          display: flex;
+          flex-direction: column;
+          width: 300px;
+          margin: 10px auto;
+          position: relative;
+          top: 30px;
+          flex-wrap: wrap;
+     }
+
+     .update-author-form label {
+          font-size: 30px;
+          color: #1fb5d3;
+          margin-bottom: 5px;
+          align-self: center;
+     }
+    
+
+     .update-author-form input {
+            height: 40px;
+            text-align: center;
+            font-size: 23px;
+        }
+     .flex-buttons{
+          display: flex;
+          padding: 10px;
+     }
+</style>
+
+<section class="update-author-outer">
+     <div class="heading">Edit Author</div>
+     <form class="update-author-form" action="/authors/<%= author.id %>?_method=PUT" method="post">
+          <%- include('./form_fields.ejs') %>
+               <div class="flex-buttons">
+                    <button class="update-author-form-button" type="submit">Update</button>
+                    <a class="cancel" href="/authors/<%= author.id %> ">Cancel</a>
+               </div>
+     </form>
+</section>

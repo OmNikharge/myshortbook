@@ -1,37 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-     <!-- Including the below to libraries will help us to upload the files via our application and store it on our server -->
+    <!-- Including the below to libraries will help us to upload the files via our application and store it on our server -->
     <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
-  
-     <!-- Plugin for image previewing -->
-    <link
-    href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
-    rel="stylesheet"
-/>
-<script defer src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
-     
-     <!-- Plugin for file encoding -->
-    <script defer src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script> 
-    
+
+    <!-- Plugin for image previewing -->
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+        rel="stylesheet" />
+    <script defer src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+
+    <!-- Plugin for file encoding -->
+    <script defer src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
+
     <!-- Plugin for image resizing -->
     <script src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"></script>
 
-     <!-- Main Filepond plugin -->
+    <!-- Main Filepond plugin -->
     <script defer src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
 
     <script defer src="/javascripts/fileUpload.js"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+    
+    <!-- Css -->
+    <link rel="stylesheet" href="/css/layout.css">
     <title>Rewise</title>
 </head>
+
 <body>
-    <br>
-    <%- include('../partials/header.ejs') %> 
-    <%- include('../partials/errorMessage.ejs') %>
-    <%- body %> 
-    <br>  
+    
+    <%- include('../partials/header.ejs') %>
+        <%- include('../partials/errorMessage.ejs') %>
+            <%- body %>
+                <br>
 </body>
+
 </html>
