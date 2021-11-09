@@ -1,12 +1,90 @@
-<h2>Title:<%= book.title %> </h2>
 
- <img src="<%= book.coverImagePath %>" height="300" width="200">   
- 
-     <div>Author:<%= book.author.name %></div> 
-    <div>Read Date: <%= book.read_date.toDateString() %></div> 
-    <div>Notes Taken: <%= book.mybooknotes %>  </div> 
- 
- <a href="/books/<%= book.id %>/edit">Edit</a>
+<style>
+    .show-book-outer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 40px 40px;
+    }
 
- <%- include('../partials/deleteform',{url:`/books/${book.id}`}) %> 
+    div {
+    font-size: 25px;
+    color: black;
+    margin-bottom: 25px;
+  }  
  
+    .flex-btns{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+   
+
+    .image {
+        margin: 10px;
+        padding: 4px 4px;
+        height: 400px;
+        width: 250px;
+        border: 2px solid #00d5ff;
+        border-radius: 10px;
+    } 
+
+      .flex-btns{
+          align-self: center;
+      }
+    
+    .delete-btn {
+          background-color: #1fb5d3;
+          margin: 15px auto;
+          width: 100px;
+          height: 35px;
+          border: none;
+          outline: none;
+          border-radius: 9999px;
+          font-size: 18px;
+          color: white;
+          /* font-weight: bold; */
+     }
+
+     .edit-btn {
+         position: relative;
+         right: 10px;
+         align-self: flex-start;
+          background-color: #1fb5d3;
+          margin: 15px auto;
+          width: 100px;
+          height: 35px;
+          border-radius: 9999px;
+          font-size: 18px;
+          color: rgb(255, 255, 255);
+          line-height: 35px;
+          text-align: center;
+          text-decoration: none;
+     }
+     .values{
+    
+      color: #1fb5d3;
+  }
+</style>
+<section class="show-book-outer">
+
+<div class="heading">
+    Title: <span class="values"><%= book.title %></span>
+</div>
+<img class="image" src="<%= book.coverImagePath %>" height="300" width="200">
+
+<div>Author: <span class="values"><%= book.author.name %></span>
+</div>
+<div>Read Date: <span class="values"><%= book.read_date.toDateString() %></span>
+</div>
+<div>Notes Taken: <span class="values"><%= book.mybooknotes %></span>
+</div>
+
+<section class="flex-btns">
+    <a class="edit-btn" href="/books/<%= book.id %>/edit">Edit</a>
+
+    <%- include('../partials/deleteform',{url:`/books/${book.id}`}) %>
+</section>
+
+</section>

@@ -1,16 +1,96 @@
-<h2>
-    <%= author.name %>
-</h2>
-<a href="/authors/<%= author.id %>/edit ">Edit</a>
-<%- include('../partials/deleteform',{url: `/authors/${author.id}`}) %>
-    <% if(book.length>0){ %>
-        <h2>Books By Author <%= author.name %>
-        </h2>
-        <div>
-            <% book.forEach(book=> { %>
-                <a href="/books/<%= book.id %>">
-                <img height="150" width="100" src="<%= book.coverImagePath %>"></a>
-                <% }) %>
-        </div>
-        <% } %>
-        
+<style>
+    .show-page-outer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        /* border: 3px solid #26199f; */
+        /* max-width: 500px; */
+        margin: auto;
+        margin-top: 50px;
+        /* background-color: #beb8f4; */
+        /* border-radius: 30px; */
+    }
+
+
+     .author-name-heading{
+         font-size: 30px;
+         color: #1fb5d3;
+         margin: 10px;
+     }
+     
+
+     .edit-btn {
+          background-color: #1fb5d3;
+          margin: 15px auto;
+          width: 100px;
+          height: 35px;
+          border-radius: 9999px;
+          font-size: 18px;
+          color: rgb(255, 255, 255);
+          line-height: 35px;
+          text-align: center;
+          text-decoration: none;
+     }
+     .delete-btn {
+          background-color: #1fb5d3;
+          margin: 15px auto;
+          width: 100px;
+          height: 35px;
+          border: none;
+          outline: none;
+          border-radius: 9999px;
+          font-size: 18px;
+          color: white;
+          /* font-weight: bold; */
+     }
+
+    .books-by-author-heading {
+        color: #1fb5d3;
+        font-size: 40px;
+        margin-top: 60px;
+        margin-bottom: 20px;
+        margin-left: 10px;
+
+    }
+
+    .book {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .image {
+        margin: 10px;
+        padding: 4px 4px;
+        height: 200px;
+        width: 125px;
+        border: 2px solid #00d5ff;
+        border-radius: 10px;
+    }
+</style>
+
+
+<section class="show-page-outer">
+
+    <div class="author-name-heading">
+        <%= author.name %>
+    </div>
+
+    <a  class="edit-btn" href="/authors/<%= author.id %>/edit ">Edit</a>
+    <%- include('../partials/deleteform',{url: `/authors/${author.id}`}) %>
+
+        <% if(book.length>0){ %>
+            <div class="books-by-author-heading">
+                Books By Author <%= author.name %>
+            </div>
+            <div class="book">
+                <% book.forEach(book=> { %>
+                    <div class="image">
+                        <a href="/books/<%= book.id %>">
+                            <img height="200" width="125" src="<%= book.coverImagePath %>"></a>
+                    
+                    </div>
+                    <% }) %>
+            </div>
+            <% } %>
+</section>

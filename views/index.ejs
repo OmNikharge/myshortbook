@@ -13,28 +13,30 @@
 
     .heading {
         color: #1fb5d3;
-        font-size: 60px;
+        font-size: 50px;
         margin-top: 60px;
         margin-bottom: 20px;
         margin-left: 10px;
 
     }
-    .book{
-        display: flex; 
+
+    .book {
+        display: flex;
         flex-wrap: wrap;
     }
+
     .image {
         margin: 10px;
         padding: 4px 4px;
-        height: 200px; ;
+        height: 200px;
         width: 125px;
-        border: 3px solid #00d5ff;
+        border: 2px solid #00d5ff;
         border-radius: 10px;
     }
 </style>
 
 <section class="index">
-    <div class="heading">Recently added</div> 
+    <div class="heading">Recently added Book Notes</div>
     <div class="book">
         <% books.forEach(book=> { %> <div class="image"> <a href="/books/<%= book.id %>">
                     <img height="200px" width="125px" src="<%= book.coverImagePath %>"></a></div>

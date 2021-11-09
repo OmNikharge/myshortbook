@@ -1,24 +1,113 @@
+<style>
+  .books-outer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .heading {
+
+    font-size: 40px;
+    color: #1fb5d3;
+    margin-top: 40px;
+    margin-bottom: 18px;
+  }
+
+  .search-book-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    padding: 40px 40px;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    border: 2px solid #1fb5d3;
+    border-radius: 5px;
+  }
+
+  .search-book-form label {
+    font-size: 25px;
+    color: #1fb5d3;
+  }
+
+  .search-book-form input {
+    margin-top: 5px;
+    margin-bottom: 25px;
+    height: 40px;
+    width: 310px;
+    text-align: center;
+  }
+  
+  .search-book-form input[class= read-before]{
+    margin-bottom: 10px;
+  }
+  .search-book-form input[type=text] {
+    width: 310px;
+  }
+
+  .search {
+    background-color: #1fb5d3;
+    margin: 15px auto;
+    width: 100px;
+    height: 35px;
+    border: none;
+    outline: none;
+    border-radius: 9999px;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    /* font-weight: bold; */
+
+  }
+
+  .all-books-heading {
+    color: #1fb5d3;
+    font-size: 40px;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+   z-index: 10;
+  }
+
+  .all-books {
+    display: flex;
+    z-index: 10;
+  }
+
+  .image {
+    margin: 10px;
+    padding: 4px 4px;
+    height: 200px;
+    width: 125px;
+    border: 2px solid #00d5ff;
+    border-radius: 10px;
+  }
+</style>
+<section class="books-outer">
+  <div class="heading">Search Book Notes</div>
+  <form class="search-book-form" action="/books" method="get">
+
+    <label>Title</label>
+    <input type="text" name="title" value="<%= typedText.title %>">
 
 
-<form action="/books" method="get">
-<div>
-<label>Title</label>
-<input type="text" name="title"  value="<%= typedText.title %>">
-</div>
-<div>
-<label>Read After</label>
-<input type="date" name="readAfter"  value="<%= typedText.readAfter %>">
-</div>
-<div>
-<label>Read Before</label>
-<input type="date" name="readBefore"  value="<%= typedText.readBefore %>">
-</div><br>
-<button type="submit">Search</button>
-</form>
-<br>
-<div>
-  <% books.forEach(book => { %>
-    <a href="/books/<%= book.id %>">
-    <img height="150" width="100" src="<%= book.coverImagePath %> " ></a>    
- <% }) %>   
-</div>
+    <label>Read After</label>
+    <input type="date" name="readAfter" value="<%= typedText.readAfter %>">
+
+
+    <label>Read Before</label>
+    <input class="read-before" type="date" name="readBefore" value="<%= typedText.readBefore %>">
+
+    <button class="search" type="submit">Search</button>
+  </form>
+  <div class="all-books-heading">All Book Notes</div>
+  <div class="all-books">
+    <% books.forEach(book=> { %> <div class="image">
+        <a href="/books/<%= book.id %>">
+          <img height="200" width="125" src="<%= book.coverImagePath %> "></a>
+      </div>
+
+      <% }) %>
+  </div>
+</section>

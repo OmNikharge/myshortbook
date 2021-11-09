@@ -23,6 +23,7 @@ body{
     top: 0px;
     align-items: center;
     background:  #bed6da;
+    z-index: 12;
 }
 
 

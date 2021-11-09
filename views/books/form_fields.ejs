@@ -1,10 +1,10 @@
-<div>
-<label>Title:</Title></label>
-<input type="text" name="title" value="<%= book.title%>"></div>
-</div>
-<div> <br>
-<label>Author:</Title></label>
-<select name="author">
+<section class="form-fields">
+    <label>Title</Title></label>
+<input type="text" name="title" value="<%= book.title%>">
+
+
+<label>Author</Title></label>
+<select class="author-list" name="author">
 
     <% authors.forEach(author=> { %>
         <% if(author.id===book.author){ %>
@@ -14,26 +14,20 @@
                 <% } %>
                     <% }) %>
 </select>
-</div> <br>
-<label>Date:</label>
+
+<label>Date</label>
 <input type="date" name="read_date"
  value="<%= book.read_date == null ? '' : 
       book.read_date.toISOString().split('T')[0] %>">
        
-<div><br>
-    <label>Page Count:</Title></label>
-    <input type="number" min="1" name="pageCount" value="<%= book.pageCount%>"></div>
-      
-<br>
-<div>
-    <label>Cover:</Title></label>
-    <input type="file" name="cover" class="filepond"></div>
-</div>
-      
-<br>
-<div>
-    <label>My notes from the book:</Title></label>
-    <textarea name="mybooknotes"><%= book.mybooknotes %> </textarea></div>
-</div>
+
+    <label>Page Count</Title></label>
+    <input type="number" min="1" name="pageCount" value="<%= book.pageCount%>">
+
+    <label>My notes from the book</Title></label>
+    <textarea class="textarea" name="mybooknotes"><%= book.mybooknotes %> </textarea></div>
+</section>
+
+
 
 <!-- Here we are accessing the name field from the author schema model -->
