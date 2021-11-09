@@ -34,6 +34,9 @@ ul{
 ul li{
     list-style: none;
     margin: 0.5rem;
-    margin-right: 40px;
+    margin-right: 35px;
 }
 
+.heading-line{
+    font-size: 32px;
+}
