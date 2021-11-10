@@ -6,35 +6,7 @@ const Book = require('../models/book')
 // const multer = require('multer')
 const { query } = require('express')
 
-
-
-// diskstorage is used to specify how the files will be stored.
-// const storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//         cb(null, 'public/uploads');
-//     },
-//     filename: function (req, file, cb) {
-//         cb(null, Date.now() + file.originalname);
-//     }
-// })
-
-//   const fileFilter = function (req, file, cb) {
-//     //reject a file
-//     if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-//         cb(null, true)
-//     } else {
-//         cb(null, false)
-//     }}
-// const upload = multer({
-//     storage: storage, limits: {
-//         fileSize: 1024 * 1024 * 5
-//     },
-//     fileFilter: fileFilter
-// });
-
-
-
-
+ 
 // All Books Routes
 router.get('/', async (req, res) => {
     let query = Book.find()
@@ -87,7 +59,7 @@ router.get('/:id/edit', async (req, res) => {
         renderNewFormPage(res, book, 'edit')
     } catch {
         res.redirect('/books')
-    }
+    }                                              
 })
 //Update Book Route
 router.put('/:id', async (req, res) => {
@@ -112,22 +84,22 @@ router.put('/:id', async (req, res) => {
 })
 
 //Delete book Route
-router.delete('/:id', async (req,res)=>{
-   let book
-   try {
-       book= await Book.findById(req.params.id)
-       book.remove()
-       res.redirect('/books')
-   } catch{
-       if(book != null){
-           res.render('books/show',{
-               book:book,
-               errorMessage: 'Could not remove Book'
-           })
-       } else{
-           res.redirect('/')
-       }
-   }
+router.delete('/:id', async (req, res) => {
+    let book
+    try {
+        book = await Book.findById(req.params.id)
+        book.remove()
+        res.redirect('/books')
+    } catch {
+        if (book != null) {
+            res.render('books/show', {
+                book: book,
+                errorMessage: 'Could not remove Book'
+            })
+        } else {
+            res.redirect('/')
+        }
+    }
 
 })
 // Create Book Route
@@ -142,10 +114,9 @@ router.post('/', async (req, res) => {
     })
     saveCover(book, req.body.cover);
     try {
-
         const newBook = await book.save()
         res.redirect('/books')
-    } catch {
+    } catch {  
         renderNewFormPage(res, new Book(), 'new', true)
     }
 })
@@ -161,8 +132,8 @@ async function renderNewFormPage(res, book, form, hasError = false) {
 
         if (hasError) {
             if (form === 'edit') {
-            params.errorMessage = 'Error Updating Book'
-            } else{ params.errorMessage = 'Error Creating Book'}
+                params.errorMessage = 'Error Updating Book'
+            } else { params.errorMessage = 'Error Creating Book' }
         }
         res.render(`books/${form}`, params)
     }
